@@ -2,6 +2,8 @@ require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
 
+	fixtures :products
+
 	test "Comprobacion de atributos no nulos" do
 		product = Product.new
 		assert product.invalid?
@@ -49,6 +51,16 @@ class ProductTest < ActiveSupport::TestCase
 			assert new_product(name).invalid?, "#{name} shouldn't be valid"
 		end
 
+	end
+
+	test "product is not valid whitout a unique title" do
+		product = Product.new(
+			:title => products(:ruby).title,
+			:description => "yyy",
+			:image_url => "zzz.jpg",
+			:price => 1)
+		assert !product.save
+		assert_equal "has already been taken" , product.errors[:title].join('; ')
 	end
 
 end
