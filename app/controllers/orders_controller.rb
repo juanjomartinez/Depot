@@ -24,7 +24,13 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.xml
   def new
+		@cart = current_cart
     @order = Order.new
+		
+		if @cart.line_items.empty?
+			redirect_to store_url, :notice => 'El carrito está vacío.'
+			return
+		end
 
     respond_to do |format|
       format.html # new.html.erb
