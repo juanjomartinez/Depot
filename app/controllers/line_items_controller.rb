@@ -75,12 +75,19 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.xml
   def destroy
+		@cart = current_cart
     @line_item = LineItem.find(params[:id])
-    @line_item.destroy
+		if @line_item.quantity == 1
+	    @line_item.destroy
+		else
+			@line_item.quantity = @line_item.quantity-1
+			@line_item.update_attributes(params[:line_item])
+		end
 
     respond_to do |format|
       format.html { redirect_to(store_url) }
-      format.xml  { head :ok }
+			format.js { @current_item = @line_item }
+			format.xml  { render :xml => @line_item }
     end
   end
 end
