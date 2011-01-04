@@ -9,7 +9,7 @@
 </head>
 <body id="store">
   <div id="banner">
-    <%= image_tag("logo.png") %>
+    <%= link_to image_tag("logo.png", :border => 0), store_url %>
     <%= @page_title || "Pragmatic Bookshelf" %>
   </div>
   <div id="columns">
