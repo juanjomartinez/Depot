@@ -82,7 +82,7 @@ class CartsController < ApplicationController
 		session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to(store_url, :notice => 'Se ha borrado tu carrito') }
+      format.html { redirect_to(store_url) }
       format.xml  { head :ok }
     end
   end
