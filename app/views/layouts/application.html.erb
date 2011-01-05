@@ -21,9 +21,20 @@
 			<% end %>
 
 			<%= link_to "Home", store_url %><br />
-      <a href="http://www..../faq">Questions</a><br />
-      <a href="http://www..../news">News</a><br />
-      <a href="http://www..../contact">Contact</a><br />
+	      <a href="http://www..../faq">Questions</a><br />
+				<a href="http://www..../news">News</a><br />
+				<a href="http://www..../contact">Contact</a><br />
+			<% if session[:user_id] %>
+				<br />
+				<%= link_to 'Orders', orders_url %><br />
+				<%= link_to 'Products', products_url %><br />
+				<%= link_to 'Users', users_url %><br />
+				<br />
+				<%= button_to 'Log out', logout_path, :method => :delete %>
+			<% else %>
+				<br />
+				<%= button_to 'Log in', login_url, :method => 'get' %>
+			<% end %>
     </div>
     <div id="main">
       <%= yield %>

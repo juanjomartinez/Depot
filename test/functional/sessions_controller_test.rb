@@ -20,7 +20,7 @@ class SessionsControllerTest < ActionController::TestCase
 		assert_redirected_to login_url
 	end
 
-	text "should log out" do
+	test "should log out" do
 		delete :destroy
 		assert_redirected_to store_url
 	end
