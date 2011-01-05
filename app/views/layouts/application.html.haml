@@ -14,7 +14,7 @@
 		%div#side
 			- if @cart
 				- hidden_div_if(@cart.line_items.empty?, :id => "cart") do
-					=render @cart	
+					= render @cart	
 
 			= link_to "Home", store_url
 			%br
