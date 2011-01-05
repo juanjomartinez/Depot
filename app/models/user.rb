@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 	def password=(password)
 		@password = password
 		
-		if password.prensent?
+		if password.present?
 			generate_salt
 			self.hashed_password = self.class.encrypt_password(password, salt)
 		end
