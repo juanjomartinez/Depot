@@ -31,9 +31,6 @@
 				<%= link_to 'Users', users_url %><br />
 				<br />
 				<%= button_to 'Log out', logout_path, :method => :delete %>
-			<% else %>
-				<br />
-				<%= button_to 'Log in', login_url, :method => 'get' %>
 			<% end %>
     </div>
     <div id="main">
