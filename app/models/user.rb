@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 		if user = find_by_name(name)
 			if user.hashed_password == encrypt_password(password, salt)
 				user
+			end
 		end
 	end
 
