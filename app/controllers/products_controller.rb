@@ -41,6 +41,8 @@ class ProductsController < ApplicationController
   # POST /products.xml
   def create
     @product = Product.new(params[:product])
+		@product.image_url = params[:archivo].original_filename
+		File.open("public/images/#{params[:archivo].original_filename}", "wb") { |f| f.write(params[:archivo].read) }
 
     respond_to do |format|
       if @product.save
@@ -57,6 +59,8 @@ class ProductsController < ApplicationController
   # PUT /products/1.xml
   def update
     @product = Product.find(params[:id])
+		@product.image_url = params[:archivo].original_filename
+		File.open("public/images/#{params[:archivo].original_filename}", "wb") { |f| f.write(params[:archivo].read) }
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
